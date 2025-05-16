@@ -1,5 +1,18 @@
 USE ORDER_DDS;
 
+-- Task 5
+
+DROP TABLE IF EXISTS DimCategories;
+DROP TABLE IF EXISTS DimCustomers;
+DROP TABLE IF EXISTS DimEmployees;
+DROP TABLE IF EXISTS DimProducts;
+DROP TABLE IF EXISTS DimRegion;
+DROP TABLE IF EXISTS DimShippers;
+DROP TABLE IF EXISTS DimSuppliers;
+DROP TABLE IF EXISTS DimTerritories;
+DROP TABLE IF EXISTS FactOrders;
+DROP TABLE IF EXISTS Dim_SOR;
+
 -- DimCategories (SCD1 with delete)
 CREATE TABLE DimCategories (
     category_sk_table INT IDENTITY(1,1) PRIMARY KEY,
@@ -131,4 +144,12 @@ CREATE TABLE FactOrders (
     FOREIGN KEY (employee_sk_table) REFERENCES DimEmployees(employee_sk_table),
     FOREIGN KEY (shipper_sk_table) REFERENCES DimShippers(shipper_sk_table),
     FOREIGN KEY (product_sk_table) REFERENCES DimProducts(product_sk_table)
+);
+
+-- Task 6
+
+CREATE TABLE Dim_SOR (
+    sor_sk INT IDENTITY(1,1) PRIMARY KEY,
+    staging_table_name NVARCHAR(255),
+    dimension_table_name NVARCHAR(255)
 );
