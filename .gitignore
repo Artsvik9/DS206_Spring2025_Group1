@@ -1,3 +1,7 @@
 .DS_Store
 
 DS206_GroupProject2_Description.pdf
+
+__pycache__
+
+pipeline_dimensional_data/__pycache__
