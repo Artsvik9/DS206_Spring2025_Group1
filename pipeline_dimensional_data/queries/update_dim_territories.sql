@@ -1,43 +1,40 @@
 USE ORDER_DDS;
 GO
 
-DECLARE @start_date DATE;
-DECLARE @end_date DATE;
-
--- Get SOR_SK
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Territories';
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Territories';
 
--- Update changed territory descriptions (SCD3 logic)
-UPDATE Dim_Territories
+UPDATE DimTerritories
 SET
-    previous_description = current_description,
-    current_description = s.TerritoryDescription,
-    region_nk = s.RegionID,
-    staging_raw_id_sk = s.staging_raw_id_sk,
+    prior_territory_description = current_territory_description,
+    current_territory_description = s.TerritoryDescription,
+    region_id = s.RegionID,
+    staging_raw_id_sk = s.Staging_Raw_ID,
     sor_sk = @sor_sk
-FROM Dim_Territories d
-JOIN stg_raw_Territories s ON d.territory_nk = s.TerritoryID
-WHERE d.current_description != s.TerritoryDescription;
+FROM Staging_Territories s
+JOIN DimTerritories d
+    ON s.TerritoryID = d.territory_id_nk
+WHERE d.current_territory_description != s.TerritoryDescription;
 
--- Insert new territories
-INSERT INTO Dim_Territories (
-    territory_nk,
-    region_nk,
-    current_description,
-    previous_description,
+INSERT INTO DimTerritories (
+    territory_id_nk,
+    current_territory_description,
+    prior_territory_description,
+    region_id,
     staging_raw_id_sk,
     sor_sk
 )
 SELECT
     s.TerritoryID,
-    s.RegionID,
     s.TerritoryDescription,
-    NULL,
-    s.staging_raw_id_sk,
+    NULL,                 
+    s.RegionID,
+    s.Staging_Raw_ID,
     @sor_sk
-FROM stg_raw_Territories s
+FROM Staging_Territories s
 WHERE NOT EXISTS (
-    SELECT 1 FROM Dim_Territories d
-    WHERE d.territory_nk = s.TerritoryID
+    SELECT 1 FROM DimTerritories d
+    WHERE d.territory_id_nk = s.TerritoryID
 );

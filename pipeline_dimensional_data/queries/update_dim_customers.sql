@@ -1,20 +1,18 @@
 USE ORDER_DDS;
 GO
--- Updates Dim_Customers using SCD2 logic
 
--- Declare date parameters (optional - not used here)
 DECLARE @start_date DATE;
 DECLARE @end_date DATE;
 
--- Get the SOR_SK for stg_raw_Customers
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Customers';
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Customers';
 
--- Insert new versions for changed customers
-INSERT INTO Dim_Customers (
-    customer_durable_sk,
-    customer_nk,
-    company_name,
+INSERT INTO DimCustomers (
+    customer_sk_durable,
+    customer_id_nk,
+    customer_name,
     contact_name,
     contact_title,
     address,
@@ -24,11 +22,10 @@ INSERT INTO Dim_Customers (
     country,
     phone,
     fax,
-    effective_date,
-    ineffective_date,
-    current_flag,
-    staging_raw_id_sk,
-    sor_sk
+    valid_from,
+    valid_to,
+    sor_sk,
+    staging_raw_id_sk
 )
 SELECT
     ABS(CHECKSUM(c.CustomerID)),  
@@ -43,50 +40,47 @@ SELECT
     c.Country,
     c.Phone,
     c.Fax,
-    GETDATE(),  -- effective_date
-    NULL,       -- ineffective_date
-    1,          -- current_flag
-    c.staging_raw_id_sk,
-    @sor_sk
-FROM stg_raw_Customers c
+    GETDATE(),      
+    NULL,            
+    @sor_sk,
+    c.Staging_Raw_ID
+FROM Staging_Customers c
 WHERE NOT EXISTS (
     SELECT 1
-    FROM Dim_Customers d
-    WHERE d.customer_nk = c.CustomerID
-      AND d.current_flag = 1
+    FROM DimCustomers d
+    WHERE d.customer_id_nk = c.CustomerID
+      AND d.valid_to IS NULL  
       AND (
-          d.company_name != c.CompanyName OR
-          d.contact_name != c.ContactName OR
-          d.contact_title != c.ContactTitle OR
-          d.address != c.Address OR
-          d.city != c.City OR
-          d.region != c.Region OR
-          d.postal_code != c.PostalCode OR
-          d.country != c.Country OR
-          d.phone != c.Phone OR
-          d.fax != c.Fax
+          d.customer_name    != c.CompanyName OR
+          d.contact_name     != c.ContactName OR
+          d.contact_title    != c.ContactTitle OR
+          d.address          != c.Address OR
+          d.city             != c.City OR
+          d.region           != c.Region OR
+          d.postal_code      != c.PostalCode OR
+          d.country          != c.Country OR
+          d.phone            != c.Phone OR
+          d.fax              != c.Fax
       )
 );
 
--- Mark old versions as inactive
-UPDATE Dim_Customers
-SET ineffective_date = GETDATE(),
-    current_flag = 0
-WHERE current_flag = 1
+UPDATE DimCustomers
+SET valid_to = GETDATE()
+WHERE valid_to IS NULL
 AND EXISTS (
     SELECT 1
-    FROM stg_raw_Customers c
-    WHERE c.CustomerID = Dim_Customers.customer_nk
+    FROM Staging_Customers c
+    WHERE c.CustomerID = DimCustomers.customer_id_nk
       AND (
-          Dim_Customers.company_name != c.CompanyName OR
-          Dim_Customers.contact_name != c.ContactName OR
-          Dim_Customers.contact_title != c.ContactTitle OR
-          Dim_Customers.address != c.Address OR
-          Dim_Customers.city != c.City OR
-          Dim_Customers.region != c.Region OR
-          Dim_Customers.postal_code != c.PostalCode OR
-          Dim_Customers.country != c.Country OR
-          Dim_Customers.phone != c.Phone OR
-          Dim_Customers.fax != c.Fax
+          DimCustomers.customer_name    != c.CompanyName OR
+          DimCustomers.contact_name     != c.ContactName OR
+          DimCustomers.contact_title    != c.ContactTitle OR
+          DimCustomers.address          != c.Address OR
+          DimCustomers.city             != c.City OR
+          DimCustomers.region           != c.Region OR
+          DimCustomers.postal_code      != c.PostalCode OR
+          DimCustomers.country          != c.Country OR
+          DimCustomers.phone            != c.Phone OR
+          DimCustomers.fax              != c.Fax
       )
 );

@@ -1,28 +1,27 @@
 USE ORDER_DDS;
 GO
 
--- Optional parameters (not used)
 DECLARE @start_date DATE;
 DECLARE @end_date DATE;
 
--- Get the SOR_SK for stg_raw_Region
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Region';
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Region';
 
--- MERGE for overwrite (SCD1)
-MERGE Dim_Region AS target
-USING stg_raw_Region AS source
-ON target.region_nk = source.RegionID
+MERGE DimRegion AS target
+USING Staging_Region AS source
+ON target.region_id_nk = source.RegionID
 WHEN MATCHED AND (
     target.region_description != source.RegionDescription
 )
 THEN UPDATE SET
-    region_description = source.RegionDescription,
-    staging_raw_id_sk = source.staging_raw_id_sk,
-    sor_sk = @sor_sk
+    region_description   = source.RegionDescription,
+    staging_raw_id_sk    = source.Staging_Raw_ID,
+    sor_sk               = @sor_sk
 WHEN NOT MATCHED BY TARGET
 THEN INSERT (
-    region_nk,
+    region_id_nk,
     region_description,
     staging_raw_id_sk,
     sor_sk
@@ -30,6 +29,6 @@ THEN INSERT (
 VALUES (
     source.RegionID,
     source.RegionDescription,
-    source.staging_raw_id_sk,
+    source.Staging_Raw_ID,
     @sor_sk
 );

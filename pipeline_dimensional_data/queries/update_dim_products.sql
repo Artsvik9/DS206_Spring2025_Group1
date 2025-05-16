@@ -3,64 +3,47 @@ GO
 
 DECLARE @start_date DATE;
 DECLARE @end_date DATE;
-
--- Get the SOR_SK for stg_raw_Products
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Products';
 
--- Insert or update Dim_Products by linking to profile SK
-MERGE Dim_Products AS target
-USING (
-    SELECT
-        ProductID,
-        ProductName,
-        SupplierID,
-        CategoryID,
-        Discontinued,
-        staging_raw_id_sk,
-        ppf.product_profile_sk
-    FROM stg_raw_Products p
-    JOIN Dim_Products_Profile ppf
-      ON p.QuantityPerUnit = ppf.quantity_per_unit
-     AND p.UnitPrice = ppf.unit_price
-     AND p.UnitsInStock = ppf.units_in_stock
-     AND p.UnitsOnOrder = ppf.units_on_order
-     AND p.ReorderLevel = ppf.reorder_level
-) AS source
-ON target.product_nk = source.ProductID
-WHEN MATCHED AND (
-    target.product_name != source.ProductName OR
-    target.supplier_nk != source.SupplierID OR
-    target.category_nk != source.CategoryID OR
-    target.product_profile_sk != source.product_profile_sk OR
-    target.discontinued != source.Discontinued
-)
-THEN UPDATE SET
-    product_name        = source.ProductName,
-    supplier_nk         = source.SupplierID,
-    category_nk         = source.CategoryID,
-    product_profile_sk  = source.product_profile_sk,
-    discontinued        = source.Discontinued,
-    staging_raw_id_sk   = source.staging_raw_id_sk,
-    sor_sk              = @sor_sk
-WHEN NOT MATCHED BY TARGET
-THEN INSERT (
-    product_nk,
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Products';
+
+INSERT INTO DimProducts (
+    product_sk_durable,
+    product_id_nk,
     product_name,
-    supplier_nk,
-    category_nk,
-    product_profile_sk,
+    supplier_id,
+    category_id,
+    quantity_per_unit,
+    unit_price,
+    units_in_stock,
+    units_on_order,
+    reorder_level,
     discontinued,
+    snapshot_date,
     staging_raw_id_sk,
     sor_sk
 )
-VALUES (
-    source.ProductID,
-    source.ProductName,
-    source.SupplierID,
-    source.CategoryID,
-    source.product_profile_sk,
-    source.Discontinued,
-    source.staging_raw_id_sk,
+SELECT
+    ABS(CHECKSUM(p.ProductID)),         
+    p.ProductID,
+    p.ProductName,
+    p.SupplierID,
+    p.CategoryID,
+    p.QuantityPerUnit,
+    TRY_CAST(p.UnitPrice AS DECIMAL(18,2)),
+    p.UnitsInStock,
+    p.UnitsOnOrder,
+    p.ReorderLevel,
+    p.Discontinued,
+    GETDATE() AS snapshot_date,
+    p.Staging_Raw_ID,
     @sor_sk
+FROM Staging_Products p
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM DimProducts d
+    WHERE d.product_id_nk = p.ProductID
+      AND d.snapshot_date = CAST(GETDATE() AS DATE)
 );

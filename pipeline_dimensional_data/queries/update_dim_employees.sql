@@ -1,35 +1,34 @@
 USE ORDER_DDS;
 GO
--- Declare optional parameters
+
 DECLARE @start_date DATE;
 DECLARE @end_date DATE;
 
--- Get the SOR_SK for stg_raw_Employees
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Employees';
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Employees';
 
--- UPSERT: Update existing or insert new records
-MERGE Dim_Employees AS target
-USING stg_raw_Employees AS source
-ON target.employee_nk = source.EmployeeID
+MERGE DimEmployees AS target
+USING Staging_Employees AS source
+ON target.employee_id_nk = source.EmployeeID
 WHEN MATCHED AND (
-    target.last_name         != source.LastName OR
-    target.first_name        != source.FirstName OR
-    target.title             != source.Title OR
-    target.title_of_courtesy!= source.TitleOfCourtesy OR
-    target.birth_date        != source.BirthDate OR
-    target.hire_date         != source.HireDate OR
-    target.address           != source.Address OR
-    target.city              != source.City OR
-    target.region            != source.Region OR
-    target.postal_code       != source.PostalCode OR
-    target.country           != source.Country OR
-    target.home_phone        != source.HomePhone OR
-    target.extension         != source.Extension OR
-    -- target.photo             != source.Photo OR
-    target.notes             != source.Notes OR
-    target.reports_to        != source.ReportsTo OR
-    target.photo_path        != source.PhotoPath
+    target.last_name           != source.LastName OR
+    target.first_name          != source.FirstName OR
+    target.title               != source.Title OR
+    target.title_of_courtesy  != source.TitleOfCourtesy OR
+    target.birth_date          != source.BirthDate OR
+    target.hire_date           != source.HireDate OR
+    target.address             != source.Address OR
+    target.city                != source.City OR
+    target.region              != source.Region OR
+    target.postal_code         != source.PostalCode OR
+    target.country             != source.Country OR
+    target.home_phone          != source.HomePhone OR
+    target.extension           != TRY_CAST(source.Extension AS INT) OR
+    target.notes               != source.Notes OR
+    target.reports_to          != source.ReportsTo OR
+    target.photo_path          != source.PhotoPath
 )
 THEN UPDATE SET
     last_name          = source.LastName,
@@ -44,16 +43,15 @@ THEN UPDATE SET
     postal_code        = source.PostalCode,
     country            = source.Country,
     home_phone         = source.HomePhone,
-    extension          = source.Extension,
-    photo              = source.Photo,
+    extension          = TRY_CAST(source.Extension AS INT),
     notes              = source.Notes,
     reports_to         = source.ReportsTo,
     photo_path         = source.PhotoPath,
-    staging_raw_id_sk  = source.staging_raw_id_sk,
+    staging_raw_id_sk  = source.Staging_Raw_ID,
     sor_sk             = @sor_sk
 WHEN NOT MATCHED BY TARGET
 THEN INSERT (
-    employee_nk,
+    employee_id_nk,
     last_name,
     first_name,
     title,
@@ -67,7 +65,6 @@ THEN INSERT (
     country,
     home_phone,
     extension,
-    photo,
     notes,
     reports_to,
     photo_path,
@@ -88,17 +85,15 @@ VALUES (
     source.PostalCode,
     source.Country,
     source.HomePhone,
-    source.Extension,
-    source.Photo,
+    TRY_CAST(source.Extension AS INT),
     source.Notes,
     source.ReportsTo,
     source.PhotoPath,
-    source.staging_raw_id_sk,
+    source.Staging_Raw_ID,
     @sor_sk
 );
 
--- DELETE records no longer in source
-DELETE FROM Dim_Employees
-WHERE employee_nk NOT IN (
-    SELECT EmployeeID FROM stg_raw_Employees
+DELETE FROM DimEmployees
+WHERE employee_id_nk NOT IN (
+    SELECT EmployeeID FROM Staging_Employees
 );

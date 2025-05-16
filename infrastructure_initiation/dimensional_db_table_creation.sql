@@ -19,7 +19,9 @@ CREATE TABLE DimCategories (
     category_id_nk INT,
     category_name NVARCHAR(255),
     description NVARCHAR(MAX),
-    is_deleted BIT DEFAULT 0
+    is_deleted BIT DEFAULT 0,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimCustomers (SCD2)
@@ -38,7 +40,9 @@ CREATE TABLE DimCustomers (
     phone NVARCHAR(255),
     fax NVARCHAR(255),
     valid_from DATE,
-    valid_to DATE
+    valid_to DATE,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimEmployees (SCD1 with delete)
@@ -61,7 +65,9 @@ CREATE TABLE DimEmployees (
     notes NVARCHAR(MAX),
     reports_to INT,
     photo_path NVARCHAR(255),
-    is_deleted BIT DEFAULT 0
+    is_deleted BIT DEFAULT 0,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimProducts (SCD4)
@@ -78,14 +84,18 @@ CREATE TABLE DimProducts (
     units_on_order INT,
     reorder_level INT,
     discontinued BIT,
-    snapshot_date DATE
+    snapshot_date DATE,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimRegion (SCD1)
 CREATE TABLE DimRegion (
     region_sk_table INT IDENTITY(1,1) PRIMARY KEY,
     region_id_nk INT,
-    region_description NVARCHAR(255)
+    region_description NVARCHAR(255),
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimShippers (SCD3 - 2 attributes, current and prior)
@@ -95,7 +105,9 @@ CREATE TABLE DimShippers (
     current_company_name NVARCHAR(255),
     current_phone NVARCHAR(50),
     previous_company_name NVARCHAR(255),
-    previous_phone NVARCHAR(50)
+    previous_phone NVARCHAR(50),
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimSuppliers (SCD4)
@@ -114,7 +126,9 @@ CREATE TABLE DimSuppliers (
     phone NVARCHAR(255),
     fax NVARCHAR(255),
     home_page NVARCHAR(255),
-    snapshot_date DATE
+    snapshot_date DATE,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- DimTerritories (SCD3)
@@ -123,7 +137,9 @@ CREATE TABLE DimTerritories (
     territory_id_nk INT,
     current_territory_description NVARCHAR(255),
     prior_territory_description NVARCHAR(255),
-    region_id INT
+    region_id INT,
+    sor_sk INT,
+    staging_raw_id_sk INT
 );
 
 -- FactOrders (SNAPSHOT)
@@ -139,6 +155,8 @@ CREATE TABLE FactOrders (
     total_amount DECIMAL(18,2),
     discount DECIMAL(18,2),
     snapshot_date DATE,
+    sor_sk INT,
+    staging_raw_id_sk INT,
 
     FOREIGN KEY (customer_sk_table) REFERENCES DimCustomers(customer_sk_table),
     FOREIGN KEY (employee_sk_table) REFERENCES DimEmployees(employee_sk_table),
@@ -152,4 +170,17 @@ CREATE TABLE Dim_SOR (
     sor_sk INT IDENTITY(1,1) PRIMARY KEY,
     staging_table_name NVARCHAR(255),
     dimension_table_name NVARCHAR(255)
+);
+
+CREATE TABLE Fact_Error (
+    fact_error_id INT IDENTITY(1,1) PRIMARY KEY,
+    order_id_nk INT,
+    customer_id_nk NVARCHAR(255),
+    employee_id_nk INT,
+    shipper_id_nk INT,
+    order_date DATE,
+    shipped_date DATE,
+    freight MONEY,
+    staging_raw_id_sk INT,
+    sor_sk INT
 );

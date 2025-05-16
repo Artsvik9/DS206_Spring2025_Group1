@@ -1,43 +1,46 @@
 USE ORDER_DDS;
 GO
 
--- Parameters
 DECLARE @start_date DATE = '2022-01-01';
 DECLARE @end_date DATE = '2025-12-31';
-
--- Get SOR_SK for stg_raw_Orders
 DECLARE @sor_sk INT;
-SELECT @sor_sk = sor_sk FROM Dim_SOR WHERE source_table_name = 'stg_raw_Orders';
 
--- Insert into Fact_Orders
-INSERT INTO Fact_Orders (
-    order_nk,
-    customer_sk,
-    employee_sk,
-    shipper_sk,
+SELECT @sor_sk = sor_sk 
+FROM Dim_SOR 
+WHERE staging_table_name = 'Staging_Orders';
+
+INSERT INTO FactOrders (
+    order_id_nk,
+    customer_sk_table,
+    employee_sk_table,
+    shipper_sk_table,
+    product_sk_table,
     order_date,
-    shipped_date,
-    freight,
-    staging_raw_id_sk,
-    sor_sk
+    quantity,
+    total_amount,
+    discount,
+    snapshot_date
 )
 SELECT
-    s.OrderID,
-    c.customer_table_sk,
-    e.employee_durable_sk,
-    sh.shipper_durable_sk,
-    s.OrderDate,
-    s.ShippedDate,
-    s.Freight,
-    s.staging_raw_id_sk,
-    @sor_sk
-FROM stg_raw_Orders s
-JOIN Dim_Customers c
-    ON s.CustomerID = c.customer_nk
-    AND c.current_flag = 1
-JOIN Dim_Employees e
-    ON s.EmployeeID = e.employee_nk
-JOIN Dim_Shippers sh
-    ON s.ShipVia = sh.shipper_nk
-WHERE s.OrderDate BETWEEN @start_date AND @end_date;
-
+    o.OrderID,                          
+    c.customer_sk_table,              
+    e.employee_sk_table,                
+    sh.shipper_sk_table,               
+    p.product_sk_table,                
+    TRY_CAST(o.OrderDate AS DATE),     
+    od.Quantity,                        
+    od.UnitPrice * od.Quantity,        
+    od.Discount,                       
+    GETDATE() AS snapshot_date
+FROM Staging_Orders o
+JOIN Staging_OrderDetails od
+    ON o.OrderID = od.OrderID
+JOIN DimCustomers c
+    ON o.CustomerID = c.customer_id_nk
+JOIN DimEmployees e
+    ON o.EmployeeID = e.employee_id_nk
+JOIN DimShippers sh
+    ON o.ShipVia = sh.shipper_id_nk
+JOIN DimProducts p
+    ON od.ProductID = p.product_id_nk
+WHERE TRY_CAST(o.OrderDate AS DATE) BETWEEN @start_date AND @end_date;

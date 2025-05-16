@@ -1,3 +1,5 @@
+USE ORDER_DDS;
+
 DROP TABLE IF EXISTS Staging_Categories;
 DROP TABLE IF EXISTS Staging_Customers;
 DROP TABLE IF EXISTS Staging_Employees;
