@@ -1,5 +1,4 @@
-import logging
-from logging import FileHandler, StreamHandler, Formatter, getLogger
+from logging import FileHandler, StreamHandler, Formatter, getLogger, DEBUG
 from colorama import Fore, Style, init
 import os
 
@@ -9,14 +8,17 @@ LOG_PATH = "logs/logs_dimensional_data_pipeline.txt"
 os.makedirs(os.path.dirname(LOG_PATH), exist_ok=True)
 
 logger = getLogger("DimensionalDataFlow")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(DEBUG)
 
 if not logger.handlers:
-    file_handler = FileHandler(LOG_PATH, encoding='utf-8')
-    file_handler.setLevel(logging.DEBUG)
+    file_handler = FileHandler(LOG_PATH, encoding="utf-8")
+    file_handler.setLevel(DEBUG)
+
+    stream_handler = StreamHandler()
+    stream_handler.setLevel(DEBUG)
 
     file_formatter = Formatter(
-        fmt="%(asctime)s - %(levelname)s - [ExecutionID: %(execution_id)s] %(message)s",
+        fmt="%(asctime)s - %(levelname)s - [ExecutionID: %(execution_id)s] - %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S"
     )
     file_handler.setFormatter(file_formatter)
@@ -33,11 +35,8 @@ if not logger.handlers:
                 record.msg = f"{Fore.YELLOW}{record.msg}{Style.RESET_ALL}"
             return super().format(record)
 
-    stream_handler = StreamHandler()
-    stream_handler.setLevel(logging.DEBUG)
-    stream_handler.setFormatter(ColoredFormatter(
-        "%(levelname)s - [ExecutionID: %(execution_id)s] %(message)s"
-    ))
+    console_formatter = ColoredFormatter("%(levelname)s: %(message)s")
+    stream_handler.setFormatter(console_formatter)
 
     logger.addHandler(file_handler)
     logger.addHandler(stream_handler)

@@ -1,6 +1,6 @@
-from pipeline_dimensional_data.config_db import get_db_connection, ensure_database_exists
+from utils import get_db_connection, ensure_database_exists
 from utils import execute_sql_script_from_file, load_raw_data_to_staging
-from loggings import logger
+from pipeline_dimensional_data.custom_logging import logger
 import os
 
 # Task 1: Create Tables

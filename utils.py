@@ -2,8 +2,8 @@ import os
 import pyodbc
 import uuid
 import pandas as pd
-from loggings import logger
-from pipeline_dimensional_data.config_db import get_db_config, ensure_database_exists
+from pipeline_dimensional_data.custom_logging import logger
+from pipeline_dimensional_data.config import get_db_config, ensure_database_exists
 import numpy as np
 from decimal import Decimal
 
