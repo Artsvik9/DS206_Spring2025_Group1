@@ -1,5 +1,4 @@
 USE ORDER_DDS;
-GO
 
 CREATE TABLE stg_raw_Categories (
     staging_raw_id_sk INT IDENTITY(1,1) PRIMARY KEY,
