@@ -1,7 +1,7 @@
 import configparser
 import os
 import pyodbc
-from pipeline_dimensional_data.custom_logging import logger
+from custom_logging import logger
 
 
 def get_db_config(config_file: str = './sql_server_config.cfg') -> dict:

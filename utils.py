@@ -2,7 +2,7 @@ import os
 import pyodbc
 import uuid
 import pandas as pd
-from pipeline_dimensional_data.custom_logging import logger
+from custom_logging import logger
 from pipeline_dimensional_data.config import get_db_config, ensure_database_exists
 import numpy as np
 from decimal import Decimal
@@ -127,26 +127,26 @@ def execute_sql_inserts(df, table_name, conn):
     logger.info(f"Inserted {len(df)} rows into {table_name}.")
 
 #Loading raw data in db
-def load_raw_data_to_staging(raw_data_path: str):
+def load_raw_data_to_staging(raw_data_source: str):
     """
     Loads raw data from an Excel file into staging tables in the database.
     """
     conn = get_db_connection()
     try:
         # Load data from Excel sheets
-        df_products = pd.read_excel(raw_data_path, sheet_name='Products')
-        df_region = pd.read_excel(raw_data_path, sheet_name='Region')
-        df_shippers = pd.read_excel(raw_data_path, sheet_name='Shippers')
-        df_suppliers = pd.read_excel(raw_data_path, sheet_name='Suppliers')
+        df_products = pd.read_excel(raw_data_source, sheet_name='Products')
+        df_region = pd.read_excel(raw_data_source, sheet_name='Region')
+        df_shippers = pd.read_excel(raw_data_source, sheet_name='Shippers')
+        df_suppliers = pd.read_excel(raw_data_source, sheet_name='Suppliers')
         df_suppliers.sort_values(by='Phone', ascending=True, na_position='first', inplace=True)
         df_suppliers['Phone'] = df_suppliers['Phone'].astype(str)
         df_suppliers.replace({np.nan: None, np.inf: None, -np.inf: None}, inplace=True)
-        df_territories = pd.read_excel(raw_data_path, sheet_name='Territories')
-        df_orders = pd.read_excel(raw_data_path, sheet_name='Orders')
-        df_customers = pd.read_excel(raw_data_path, sheet_name='Customers')
-        df_employees = pd.read_excel(raw_data_path, sheet_name='Employees')
-        df_order_details = pd.read_excel(raw_data_path, sheet_name='OrderDetails')
-        df_categories = pd.read_excel(raw_data_path, sheet_name='Categories')
+        df_territories = pd.read_excel(raw_data_source, sheet_name='Territories')
+        df_orders = pd.read_excel(raw_data_source, sheet_name='Orders')
+        df_customers = pd.read_excel(raw_data_source, sheet_name='Customers')
+        df_employees = pd.read_excel(raw_data_source, sheet_name='Employees')
+        df_order_details = pd.read_excel(raw_data_source, sheet_name='OrderDetails')
+        df_categories = pd.read_excel(raw_data_source, sheet_name='Categories')
 
         # Insert data into respective tables
         execute_sql_inserts(df_products, 'Staging_Products', conn)

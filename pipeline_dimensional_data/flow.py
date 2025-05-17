@@ -7,7 +7,7 @@ from pipeline_dimensional_data.tasks import (
     populate_dim_sor_task,
 )
 from utils import generate_uuid
-from pipeline_dimensional_data.custom_logging import logger
+from custom_logging import logger
 
 class DimensionalDataFlow:
     """
