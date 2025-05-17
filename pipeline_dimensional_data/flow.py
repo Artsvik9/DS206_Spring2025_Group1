@@ -14,13 +14,13 @@ class DimensionalDataFlow:
     Orchestrates the ETL pipeline for the dimensional data warehouse.
     """
 
-    def __init__(self):
+    def __init__(self, connection):
+        self.connection = connection
         self.execution_id = generate_uuid()
         self.tasks_status = {}
 
     def exec(self, start_date: str, end_date: str):
         logger.info("Creating tables...", extra={'execution_id': self.execution_id})
-        logger.error("Fact table ingestion failed.", extra={'execution_id': self.execution_id})
 
         try:
             self.tasks_status['create_tables'] = create_tables_task()

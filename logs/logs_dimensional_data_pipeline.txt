@@ -1,0 +1,628 @@
+2025-05-17 13:57:41 - ERROR - [ExecutionID: N/A] - Database creation failed: ('HYT00', '[HYT00] [Microsoft][ODBC Driver 18 for SQL Server]Login timeout expired (0) (SQLDriverConnect)')
+2025-05-17 14:04:21 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:03 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:03 - INFO - [ExecutionID: N/A] - Creating tables...
+2025-05-17 14:08:03 - INFO - [ExecutionID: N/A] - Creating database and tables...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - SQL script contains 3 statements.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 1: -- Task 1
+
+DROP DATABASE IF EXISTS ORDER_DDS...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 2: IF NOT EXISTS (SELECT name FROM master.sys.databas...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - SQL script contains 22 statements.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 2: DROP TABLE IF EXISTS Staging_Categories...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS Staging_Customers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS Staging_Employees...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS Staging_Products...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS Staging_Region...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS Staging_Shippers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS Staging_Suppliers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS Staging_Territories...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS Staging_Orders...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Staging_OrderDetails...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 12: CREATE TABLE Staging_Categories (
+    Staging_Raw_...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 13: CREATE TABLE Staging_Customers (
+    Staging_Raw_I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 14: CREATE TABLE Staging_Employees (
+    Staging_Raw_I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 15: CREATE TABLE Staging_Products (
+    Staging_Raw_ID...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 16: CREATE TABLE Staging_Region (
+    Staging_Raw_ID I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 17: CREATE TABLE Staging_Shippers (
+    Staging_Raw_ID...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 18: CREATE TABLE Staging_Suppliers (
+    Staging_Raw_I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 19: CREATE TABLE Staging_Territories (
+    Staging_Raw...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 20: CREATE TABLE Staging_Orders (
+    Staging_Raw_ID I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 21: CREATE TABLE Staging_OrderDetails (
+    Staging_Ra...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - SQL script contains 23 statements.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 2: -- Task 5
+
+DROP TABLE IF EXISTS DimCategories...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS DimCustomers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS DimEmployees...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS DimProducts...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS DimRegion...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS DimShippers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS DimSuppliers...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS DimTerritories...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS FactOrders...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Dim_SOR...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 12: -- DimCategories (SCD1 with delete)
+CREATE TABLE D...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 13: -- DimCustomers (SCD2)
+CREATE TABLE DimCustomers (...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 14: -- DimEmployees (SCD1 with delete)
+CREATE TABLE Di...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 15: -- DimProducts (SCD4)
+CREATE TABLE DimProducts (
+ ...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 16: -- DimRegion (SCD1)
+CREATE TABLE DimRegion (
+    r...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 17: -- DimShippers (SCD3 - 2 attributes, current and p...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 18: -- DimSuppliers (SCD4)
+CREATE TABLE DimSuppliers (...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 19: -- DimTerritories (SCD3)
+CREATE TABLE DimTerritori...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 20: -- FactOrders (SNAPSHOT)
+CREATE TABLE FactOrders (...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 21: -- Task 6
+
+CREATE TABLE Dim_SOR (
+    sor_sk INT I...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:08:04 - DEBUG - [ExecutionID: N/A] - Executing statement 22: CREATE TABLE Fact_Error (
+    fact_error_id INT ID...
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Statement 22 executed successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Tables created successfully.
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Loading raw data from: raw_data_source.xlsx
+2025-05-17 14:08:04 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:07 - INFO - [ExecutionID: N/A] - Inserted 77 rows into Staging_Products.
+2025-05-17 14:08:07 - INFO - [ExecutionID: N/A] - Inserted 4 rows into Staging_Region.
+2025-05-17 14:08:07 - INFO - [ExecutionID: N/A] - Inserted 3 rows into Staging_Shippers.
+2025-05-17 14:08:07 - INFO - [ExecutionID: N/A] - Inserted 29 rows into Staging_Suppliers.
+2025-05-17 14:08:07 - INFO - [ExecutionID: N/A] - Inserted 53 rows into Staging_Territories.
+2025-05-17 14:08:09 - INFO - [ExecutionID: N/A] - Inserted 830 rows into Staging_Orders.
+2025-05-17 14:08:09 - INFO - [ExecutionID: N/A] - Inserted 91 rows into Staging_Customers.
+2025-05-17 14:08:09 - INFO - [ExecutionID: N/A] - Inserted 9 rows into Staging_Employees.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Inserted 2155 rows into Staging_OrderDetails.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Inserted 8 rows into Staging_Categories.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Database connection closed.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Raw data loaded successfully.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_region.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_region.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_suppliers.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_suppliers.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_territories.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_territories.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_categories.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_categories.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_customers.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_customers.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_shippers.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_shippers.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_employees.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_employees.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_products.sql
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_products.sql: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 117, in update_dimensional_tables_task
+    cursor.execute(sql_script)
+pyodbc.ProgrammingError: ('42000', "[42000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Incorrect syntax near 'GO'. (102) (SQLExecDirectW)")
+2025-05-17 14:08:11 - ERROR - [ExecutionID: N/A] - [FLOW] Execution ddee27b9-61c5-4589-9128-714e66d95103 failed: 'success'
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/flow.py", line 36, in exec
+    if not self.tasks_status['update_dim_tables']['success']:
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'success'
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Creating tables...
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Creating database and tables...
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - SQL script contains 3 statements.
+2025-05-17 14:17:22 - DEBUG - [ExecutionID: N/A] - Executing statement 1: -- Task 1
+
+DROP DATABASE IF EXISTS ORDER_DDS...
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:17:22 - DEBUG - [ExecutionID: N/A] - Executing statement 2: IF NOT EXISTS (SELECT name FROM master.sys.databas...
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:22 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - SQL script contains 22 statements.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 2: DROP TABLE IF EXISTS Staging_Categories...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS Staging_Customers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS Staging_Employees...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS Staging_Products...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS Staging_Region...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS Staging_Shippers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS Staging_Suppliers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS Staging_Territories...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS Staging_Orders...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Staging_OrderDetails...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 12: CREATE TABLE Staging_Categories (
+    Staging_Raw_...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 13: CREATE TABLE Staging_Customers (
+    Staging_Raw_I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 14: CREATE TABLE Staging_Employees (
+    Staging_Raw_I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 15: CREATE TABLE Staging_Products (
+    Staging_Raw_ID...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 16: CREATE TABLE Staging_Region (
+    Staging_Raw_ID I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 17: CREATE TABLE Staging_Shippers (
+    Staging_Raw_ID...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 18: CREATE TABLE Staging_Suppliers (
+    Staging_Raw_I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 19: CREATE TABLE Staging_Territories (
+    Staging_Raw...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 20: CREATE TABLE Staging_Orders (
+    Staging_Raw_ID I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 21: CREATE TABLE Staging_OrderDetails (
+    Staging_Ra...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - SQL script contains 23 statements.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 2: -- Task 5
+
+DROP TABLE IF EXISTS DimCategories...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS DimCustomers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS DimEmployees...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS DimProducts...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS DimRegion...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS DimShippers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS DimSuppliers...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS DimTerritories...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS FactOrders...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Dim_SOR...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 12: -- DimCategories (SCD1 with delete)
+CREATE TABLE D...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 13: -- DimCustomers (SCD2)
+CREATE TABLE DimCustomers (...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 14: -- DimEmployees (SCD1 with delete)
+CREATE TABLE Di...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 15: -- DimProducts (SCD4)
+CREATE TABLE DimProducts (
+ ...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 16: -- DimRegion (SCD1)
+CREATE TABLE DimRegion (
+    r...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 17: -- DimShippers (SCD3 - 2 attributes, current and p...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 18: -- DimSuppliers (SCD4)
+CREATE TABLE DimSuppliers (...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 19: -- DimTerritories (SCD3)
+CREATE TABLE DimTerritori...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 20: -- FactOrders (SNAPSHOT)
+CREATE TABLE FactOrders (...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 21: -- Task 6
+
+CREATE TABLE Dim_SOR (
+    sor_sk INT I...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:17:23 - DEBUG - [ExecutionID: N/A] - Executing statement 22: CREATE TABLE Fact_Error (
+    fact_error_id INT ID...
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Statement 22 executed successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Tables created successfully.
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Loading raw data from: raw_data_source.xlsx
+2025-05-17 14:17:23 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:24 - INFO - [ExecutionID: N/A] - Inserted 77 rows into Staging_Products.
+2025-05-17 14:17:24 - INFO - [ExecutionID: N/A] - Inserted 4 rows into Staging_Region.
+2025-05-17 14:17:24 - INFO - [ExecutionID: N/A] - Inserted 3 rows into Staging_Shippers.
+2025-05-17 14:17:24 - INFO - [ExecutionID: N/A] - Inserted 29 rows into Staging_Suppliers.
+2025-05-17 14:17:24 - INFO - [ExecutionID: N/A] - Inserted 53 rows into Staging_Territories.
+2025-05-17 14:17:25 - INFO - [ExecutionID: N/A] - Inserted 830 rows into Staging_Orders.
+2025-05-17 14:17:25 - INFO - [ExecutionID: N/A] - Inserted 91 rows into Staging_Customers.
+2025-05-17 14:17:25 - INFO - [ExecutionID: N/A] - Inserted 9 rows into Staging_Employees.
+2025-05-17 14:17:26 - INFO - [ExecutionID: N/A] - Inserted 2155 rows into Staging_OrderDetails.
+2025-05-17 14:17:26 - INFO - [ExecutionID: N/A] - Inserted 8 rows into Staging_Categories.
+2025-05-17 14:17:26 - INFO - [ExecutionID: N/A] - Database connection closed.
+2025-05-17 14:17:26 - INFO - [ExecutionID: N/A] - Raw data loaded successfully.
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_region.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_region.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_suppliers.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_suppliers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_territories.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_territories.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_categories.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_categories.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_customers.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_customers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_shippers.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_shippers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_employees.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_employees.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_products.sql
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_products.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 121, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:17:27 - ERROR - [ExecutionID: N/A] - [FLOW] Execution e01d8cda-abb7-4384-8b74-603f122a07ed failed: 'success'
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/flow.py", line 36, in exec
+    if not self.tasks_status['update_dim_tables']['success']:
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'success'
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Creating tables...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Creating database and tables...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - SQL script contains 3 statements.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 1: -- Task 1
+
+DROP DATABASE IF EXISTS ORDER_DDS...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 2: IF NOT EXISTS (SELECT name FROM master.sys.databas...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_creation.sql
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - SQL script contains 22 statements.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 2: DROP TABLE IF EXISTS Staging_Categories...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS Staging_Customers...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS Staging_Employees...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS Staging_Products...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS Staging_Region...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS Staging_Shippers...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS Staging_Suppliers...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS Staging_Territories...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS Staging_Orders...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Staging_OrderDetails...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 12: CREATE TABLE Staging_Categories (
+    Staging_Raw_...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 13: CREATE TABLE Staging_Customers (
+    Staging_Raw_I...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 14: CREATE TABLE Staging_Employees (
+    Staging_Raw_I...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 15: CREATE TABLE Staging_Products (
+    Staging_Raw_ID...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 16: CREATE TABLE Staging_Region (
+    Staging_Raw_ID I...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 17: CREATE TABLE Staging_Shippers (
+    Staging_Raw_ID...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 18: CREATE TABLE Staging_Suppliers (
+    Staging_Raw_I...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 19: CREATE TABLE Staging_Territories (
+    Staging_Raw...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 20: CREATE TABLE Staging_Orders (
+    Staging_Raw_ID I...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:19:28 - DEBUG - [ExecutionID: N/A] - Executing statement 21: CREATE TABLE Staging_OrderDetails (
+    Staging_Ra...
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:19:28 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/staging_raw_table_creation.sql
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Connecting to the database...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Connection established successfully.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Loaded SQL script from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - SQL script contains 23 statements.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 1: USE ORDER_DDS...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 1 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 2: -- Task 5
+
+DROP TABLE IF EXISTS DimCategories...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 2 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 3: DROP TABLE IF EXISTS DimCustomers...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 3 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 4: DROP TABLE IF EXISTS DimEmployees...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 4 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 5: DROP TABLE IF EXISTS DimProducts...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 5 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 6: DROP TABLE IF EXISTS DimRegion...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 6 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 7: DROP TABLE IF EXISTS DimShippers...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 7 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 8: DROP TABLE IF EXISTS DimSuppliers...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 8 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 9: DROP TABLE IF EXISTS DimTerritories...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 9 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 10: DROP TABLE IF EXISTS FactOrders...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 10 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 11: DROP TABLE IF EXISTS Dim_SOR...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 11 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 12: -- DimCategories (SCD1 with delete)
+CREATE TABLE D...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 12 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 13: -- DimCustomers (SCD2)
+CREATE TABLE DimCustomers (...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 13 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 14: -- DimEmployees (SCD1 with delete)
+CREATE TABLE Di...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 14 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 15: -- DimProducts (SCD4)
+CREATE TABLE DimProducts (
+ ...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 15 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 16: -- DimRegion (SCD1)
+CREATE TABLE DimRegion (
+    r...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 16 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 17: -- DimShippers (SCD3 - 2 attributes, current and p...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 17 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 18: -- DimSuppliers (SCD4)
+CREATE TABLE DimSuppliers (...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 18 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 19: -- DimTerritories (SCD3)
+CREATE TABLE DimTerritori...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 19 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 20: -- FactOrders (SNAPSHOT)
+CREATE TABLE FactOrders (...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 20 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 21: -- Task 6
+
+CREATE TABLE Dim_SOR (
+    sor_sk INT I...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 21 executed successfully.
+2025-05-17 14:19:29 - DEBUG - [ExecutionID: N/A] - Executing statement 22: CREATE TABLE Fact_Error (
+    fact_error_id INT ID...
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Statement 22 executed successfully.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - All statements executed successfully from: infrastructure_initiation/dimensional_db_table_creation.sql
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Tables created successfully.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Loading raw data from: raw_data_source.xlsx
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Inserted 77 rows into Staging_Products.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Inserted 4 rows into Staging_Region.
+2025-05-17 14:19:29 - INFO - [ExecutionID: N/A] - Inserted 3 rows into Staging_Shippers.
+2025-05-17 14:19:30 - INFO - [ExecutionID: N/A] - Inserted 29 rows into Staging_Suppliers.
+2025-05-17 14:19:30 - INFO - [ExecutionID: N/A] - Inserted 53 rows into Staging_Territories.
+2025-05-17 14:19:31 - INFO - [ExecutionID: N/A] - Inserted 830 rows into Staging_Orders.
+2025-05-17 14:19:31 - INFO - [ExecutionID: N/A] - Inserted 91 rows into Staging_Customers.
+2025-05-17 14:19:31 - INFO - [ExecutionID: N/A] - Inserted 9 rows into Staging_Employees.
+2025-05-17 14:19:32 - INFO - [ExecutionID: N/A] - Inserted 2155 rows into Staging_OrderDetails.
+2025-05-17 14:19:32 - INFO - [ExecutionID: N/A] - Inserted 8 rows into Staging_Categories.
+2025-05-17 14:19:32 - INFO - [ExecutionID: N/A] - Database connection closed.
+2025-05-17 14:19:32 - INFO - [ExecutionID: N/A] - Raw data loaded successfully.
+2025-05-17 14:19:32 - INFO - [ExecutionID: N/A] - Database creation script executed successfully.
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_region.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_region.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_suppliers.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_suppliers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_territories.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_territories.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_categories.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_categories.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_customers.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_customers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_shippers.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_shippers.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_employees.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_employees.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - INFO - [ExecutionID: N/A] - Executing script: pipeline_dimensional_data/queries/update_dim_products.sql
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - Failed to execute script pipeline_dimensional_data/queries/update_dim_products.sql: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/tasks.py", line 122, in update_dimensional_tables_task
+    cursor.execute(cleaned)
+pyodbc.ProgrammingError: ('42S02', "[42S02] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]Invalid object name 'Dim_SOR'. (208) (SQLExecDirectW)")
+2025-05-17 14:19:33 - ERROR - [ExecutionID: N/A] - [FLOW] Execution a98dd07d-966d-4812-9b79-e40dee779e6b failed: Update dimensional tables failed.
+Traceback (most recent call last):
+  File "/Users/macbook/Downloads/DS206_Spring2025_Group1-1/pipeline_dimensional_data/flow.py", line 37, in exec
+    raise Exception("Update dimensional tables failed.")
+Exception: Update dimensional tables failed.

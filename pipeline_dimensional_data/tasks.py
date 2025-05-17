@@ -30,20 +30,27 @@ def load_raw_data_task(raw_data_path: str):
         logger.error(f"Failed to load raw data: {e}", exc_info=True)
         return {'success': False, 'error': str(e)}
 
-# Task 3: Ingest Data into Fact Table
+# Task 3: Ingest Valid Fact Data
 def ingest_fact_table_task(sql_file_path: str, start_date: str, end_date: str):
+    """
+    Ingests valid rows into the FactOrders table.
+    """
     try:
         conn = get_db_connection()
         with open(sql_file_path, 'r', encoding='utf-8') as sql_file:
             sql_script = sql_file.read()
 
         with conn.cursor() as cursor:
-            cursor.execute(sql_script.format(start_date=start_date, end_date=end_date))
+            for statement in sql_script.split('GO'):
+                cleaned = statement.strip()
+                if cleaned:
+                    cursor.execute(cleaned.format(start_date=start_date, end_date=end_date))
             conn.commit()
-            logger.info(f"Data successfully ingested from: {sql_file_path}")
+
+        logger.info(f"Fact table ingested from: {sql_file_path}")
         return {'success': True}
     except Exception as e:
-        logger.error(f"Data ingestion failed: {e}", exc_info=True)
+        logger.error(f"Fact table ingestion failed: {e}", exc_info=True)
         return {'success': False, 'error': str(e)}
 
 # Task 4: Ingest Faulty Rows into FactError Table
@@ -56,11 +63,14 @@ def ingest_fact_error_task(sql_file_path: str, start_date: str, end_date: str):
         with open(sql_file_path, 'r', encoding='utf-8') as sql_file:
             sql_script = sql_file.read()
 
-        # Use parameterized queries to prevent injection and handle date ranges
         with conn.cursor() as cursor:
-            cursor.execute(sql_script.format(start_date=start_date, end_date=end_date))
+            for statement in sql_script.split('GO'):
+                cleaned = statement.strip()
+                if cleaned:
+                    cursor.execute(cleaned.format(start_date=start_date, end_date=end_date))
             conn.commit()
-            logger.info(f"Faulty rows ingested from: {sql_file_path}")
+
+        logger.info(f"Faulty rows ingested from: {sql_file_path}")
         return {'success': True}
     except Exception as e:
         logger.error(f"FactError ingestion failed: {e}", exc_info=True)
@@ -84,15 +94,6 @@ def populate_dim_sor_task(sql_file_path: str):
 
 # Task 6: Update Dimensional Tables
 def update_dimensional_tables_task(query_directory: str):
-    """
-    Executes all SQL scripts in the specified directory to update dimensional tables.
-
-    Args:
-        query_directory (str): Path to the directory containing SQL query files for dimensional tables.
-
-    Returns:
-        dict: Task execution status for each file.
-    """
     tasks_status = {}
     try:
         sql_files = [
@@ -114,7 +115,12 @@ def update_dimensional_tables_task(query_directory: str):
                     sql_script = file.read()
 
                 logger.info(f"Executing script: {sql_file}")
-                cursor.execute(sql_script)
+                
+                for statement in sql_script.split("GO"):
+                    cleaned = statement.strip()
+                    if cleaned:
+                        cursor.execute(cleaned)
+
                 conn.commit()
                 tasks_status[os.path.basename(sql_file)] = {"success": True}
                 logger.info(f"Successfully executed: {sql_file}")
@@ -124,84 +130,22 @@ def update_dimensional_tables_task(query_directory: str):
                 tasks_status[os.path.basename(sql_file)] = {"success": False, "error": str(e)}
 
         conn.close()
+
+        tasks_status['success'] = all(val["success"] for val in tasks_status.values())
         return tasks_status
 
     except Exception as e:
         logger.error(f"Error during dimensional tables update: {e}", exc_info=True)
         return {"success": False, "error": str(e)}
 
-# Main Pipeline Execution
-def run_pipeline(start_date: str, end_date: str):
-    try:
-        # Ensure the database exists
-        ensure_database_exists()
-    except Exception as e:
-        logger.error(f"Pipeline terminated: Database creation/check failed. {e}")
-        return {'success': False, 'error': str(e)}
 
-    # Define SQL script file paths
-    create_tables_directory = "infrastructure_initiation"
-    raw_data_file = "raw_data_source.xlsx"
-    queries_directory = "pipeline_dimensional_data/queries"
-    update_fact_file = os.path.join(queries_directory, "update_fact.sql")
-    update_fact_error_file = os.path.join(queries_directory, "update_fact_error.sql")
-    update_dim_sor_file = os.path.join(queries_directory, "update_dim_sor.sql")
-
-    tasks_status = {}
-
-    logger.info("Starting ETL pipeline...")
-
-    # Task 1: Create Tables
-    tasks_status['create_tables'] = create_tables_task()
-    if not tasks_status['create_tables']['success']:
-        logger.error("Pipeline terminated: Table creation failed.")
-        return tasks_status
-
-    # Task 2: Load Raw Data
-    tasks_status['load_raw_data'] = load_raw_data_task(raw_data_file)
-    if not tasks_status['load_raw_data']['success']:
-        logger.error("Pipeline terminated: Raw data loading failed.")
-        return tasks_status
-
-    # Task 3: Ingest Fact Table
-    tasks_status['ingest_fact'] = ingest_fact_table_task(update_fact_file, start_date, end_date)
-    if not tasks_status['ingest_fact']['success']:
-        logger.error("Pipeline terminated: Fact table ingestion failed.")
-        return tasks_status
-
-    # Task 4: Ingest FactError Table
-    # Add FactError ingestion task
-    tasks_status['ingest_fact_error'] = ingest_fact_error_task(update_fact_error_file, start_date, end_date)
-    if not tasks_status['ingest_fact_error']['success']:
-        logger.error("Pipeline terminated: FactError ingestion failed.")
-        return tasks_status
-
-
-    # Task 5: Populate Dim_SOR Table
-    tasks_status['populate_dim_sor'] = populate_dim_sor_task(update_dim_sor_file)
-    if not tasks_status['populate_dim_sor']['success']:
-        logger.error("Pipeline terminated: Dim_SOR population failed.")
-        return tasks_status
-
-    # Task 6: Update Dimensional Tables
-    tasks_status['update_dimensional_tables'] = update_dimensional_tables_task(queries_directory)
-    if not tasks_status['update_dimensional_tables']['success']:
-        logger.error("Pipeline terminated: Dimensional tables update failed.")
-        return tasks_status
-
-    logger.info("Pipeline completed successfully!")
-    return tasks_status
-
-
+# Reset DB (utility)
 def reset_db():
-    """
-    Drops all tables and constraints from the database.
-    """
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        # Drop all constraints
+        # Drop constraints
         cursor.execute("""
             DECLARE @sql NVARCHAR(MAX) = N'';
             SELECT @sql += N'ALTER TABLE ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) +
@@ -212,7 +156,7 @@ def reset_db():
             EXEC sp_executesql @sql;
         """)
 
-        # Drop all tables
+        # Drop tables
         cursor.execute("""
             DECLARE @sql NVARCHAR(MAX) = N'';
             SELECT @sql += N'DROP TABLE ' + QUOTENAME(s.name) + '.' + QUOTENAME(t.name) + ';'
