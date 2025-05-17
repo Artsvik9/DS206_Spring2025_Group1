@@ -147,9 +147,14 @@ def execute_sql_script_from_file(file_path: str, config_file='sql_server_config.
     except Exception as e:
         logger.error(f"An unexpected error occurred: {str(e)}", exc_info=True)
 
-
 def execute_sql_inserts(df, table_name, conn):
     cursor = conn.cursor()
+
+    try:
+        cursor.execute("USE ORDER_DDS;")
+    except Exception as e:
+        logger.warning(f"Could not switch database context: {e}", exc_info=True)
+
     for index, row in df.iterrows():
         try:
             cleaned_row = []
@@ -174,14 +179,24 @@ def execute_sql_inserts(df, table_name, conn):
                     cleaned_row.append(int(x) if pd.notnull(x) else None)
                 elif table_name == "Staging_Categories" and col in ["CategoryName", "Description"]:
                     cleaned_row.append(str(x).strip() if pd.notnull(x) else None)
-
                 else:
                     cleaned_row.append(None)
+
             placeholders = ", ".join(["?" for _ in cleaned_row])
             insert_query = f"INSERT INTO {table_name} ({', '.join(df.columns)}) VALUES ({placeholders})"
-            cursor.execute(insert_query, tuple(cleaned_row))
+
+            try:
+                cursor.execute(insert_query, tuple(cleaned_row))
+            except pyodbc.ProgrammingError as e:
+                if "Invalid object name" in str(e):
+                    logger.warning(f"Skipping insert: Table not found - likely already processed.")
+                    continue
+                else:
+                    raise
+
         except Exception as e:
             logger.error(f"Failed to insert row {index} into {table_name}: {e}", exc_info=True)
+
     conn.commit()
     logger.info(f"Inserted {len(df)} rows into {table_name}.")
 
