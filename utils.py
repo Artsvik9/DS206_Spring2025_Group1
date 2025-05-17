@@ -17,19 +17,78 @@ def generate_uuid() -> str:
     return str(uuid.uuid4())
 
 # Database connection handler
-def get_db_connection():
-    """Establishes a database connection using config."""
-    ensure_database_exists()
-    db_config = get_db_config()
-    connection_string = (
-        f"Driver={db_config['driver']};"
-        f"Server={db_config['server']};"
-        f"Database={db_config['database']};"
-        f"UID={db_config['user']};"
-        f"PWD={db_config['password']};"
-        f"TrustServerCertificate=yes;"
+# def get_db_connection():
+#     """Establishes a database connection using config."""
+#     ensure_database_exists()
+#     db_config = get_db_config()
+#     connection_string = (
+#         f"Driver={db_config['driver']};"
+#         f"Server={db_config['server']};"
+#         f"Database={db_config['database']};"
+#         f"UID={db_config['user']};"
+#         f"PWD={db_config['password']};"
+#         f"TrustServerCertificate=yes;"
+#     )
+#     return pyodbc.connect(connection_string)
+
+import configparser
+import pyodbc
+from custom_logging import logger
+
+def get_db_connection(target_db=None):
+    config = configparser.ConfigParser()
+    config.read("sql_server_config.cfg")
+
+    db_name = target_db if target_db else config.get("SQL_SERVER", "database")
+
+    conn_str = (
+        f"DRIVER={config.get('SQL_SERVER', 'driver')};"
+        f"SERVER={config.get('SQL_SERVER', 'server')};"
+        f"DATABASE={db_name};"
+        f"UID={config.get('SQL_SERVER', 'user')};"
+        f"PWD={config.get('SQL_SERVER', 'password')};"
+        "TrustServerCertificate=yes;"
     )
-    return pyodbc.connect(connection_string)
+
+    try:
+        connection = pyodbc.connect(conn_str)
+        return connection
+    except Exception as e:
+        logger.error(f"Database connection failed: {e}")
+        raise
+
+
+def ensure_database_exists():
+    """
+    Ensures that the 'DimensionalPipeline' database exists.
+    If not, creates it. Returns a connection to that DB.
+    """
+    try:
+        logger.info("Ensuring DimensionalPipeline database exists...")
+        conn = get_db_connection(target_db="master")
+        conn.autocommit = True  # 💡 KEY FIX
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            IF NOT EXISTS (
+                SELECT name 
+                FROM sys.databases 
+                WHERE name = 'DimensionalPipeline'
+            )
+            BEGIN
+                CREATE DATABASE DimensionalPipeline;
+            END
+        """)
+
+        logger.info("DimensionalPipeline database ensured.")
+
+        # Return connection to DimensionalPipeline
+        return get_db_connection(target_db="DimensionalPipeline")
+
+    except Exception as e:
+        logger.error(f"Failed to ensure database exists: {e}", exc_info=True)
+        raise
+
 
 # SQL execution utility
 def execute_sql_script_from_file(file_path: str, config_file='sql_server_config.cfg'):
