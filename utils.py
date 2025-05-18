@@ -66,7 +66,7 @@ def ensure_database_exists():
     try:
         logger.info("Ensuring DimensionalPipeline database exists...")
         conn = get_db_connection(target_db="master")
-        conn.autocommit = True  # 💡 KEY FIX
+        conn.autocommit = True  
         cursor = conn.cursor()
 
         cursor.execute("""
