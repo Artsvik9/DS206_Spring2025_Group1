@@ -1,8 +1,8 @@
 USE ORDER_DDS;
 GO
 
-DECLARE @start_date DATE = '2022-01-01';
-DECLARE @end_date DATE = '2025-12-31';
+DECLARE @start_date DATE = '1996-01-01';
+DECLARE @end_date DATE = '1998-12-31';
 DECLARE @sor_sk INT;
 
 SELECT @sor_sk = sor_sk 

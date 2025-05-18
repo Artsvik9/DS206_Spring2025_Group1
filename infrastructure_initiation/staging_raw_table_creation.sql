@@ -113,7 +113,7 @@ CREATE TABLE Staging_Orders (
     OrderID INT,
     CustomerID NVARCHAR(255),
     EmployeeID INT,
-    OrderDate NVARCHAR(255),
+    OrderDate DATETIME,
     RequiredDate NVARCHAR(255),
     ShippedDate NVARCHAR(255),
     ShipVia INT,
